@@ -10,7 +10,6 @@ import session from 'express-session';
 import morgan from 'morgan';
 import path from 'path';
 import cors from 'cors';
-import { LogServices } from 'appknit-backend-bundle';
 import { SECRET_STRING } from './constants';
 import ActivateRoutes from './routes';
 
@@ -26,10 +25,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(busboyBodyParser());
-app.use(LogServices.RequestInterceptor);
-if (process.env.NODE_ENV !== 'production') {
-	app.use(LogServices.ResponseInterceptor);
-}
 app.use(morgan('dev'));
 app.use(express.static(path.resolve('dist')));
 app.use(session({ secret: SECRET_STRING, resave: true, saveUninitialized: true }));
