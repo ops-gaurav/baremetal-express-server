@@ -38,4 +38,4 @@ app.get('/', (req, res) => res.send(`<h1>BareMetal Express Server ${env} environ
 
 const { env: { PORT = 3000 } } = process;
 
-app.listen(port, () => console.log(`Backend is running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Backend is running on port ${PORT}`));
